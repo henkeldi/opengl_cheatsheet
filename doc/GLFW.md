@@ -39,9 +39,9 @@ for monitor in glfw.GetMonitors():
 ### Create Window
 
 ```python
-glfw.WindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4)
-glfw.WindowHint(GLFW_CONTEXT_VERSION_MINOR, 5)
-glfw.WindowHint(GLFW_SAMPLES, 4)
+glfw.WindowHint(glfw.CONTEXT_VERSION_MAJOR, 4)
+glfw.WindowHint(glfw.CONTEXT_VERSION_MINOR, 5)
+glfw.WindowHint(glfw.SAMPLES, 4)
 window = glfw.CreateWindow(640, 480, "My Title", None, None)
 glfw.MakeContextCurrent(window)
 ```
@@ -197,6 +197,7 @@ previous_second = glfw.GetTime()
 frame_count = 0.0
 
 def update_fps_counter():
+    global previous_second, frame_count
     current_second = glfw.GetTime()
     elapsed_seconds = current_second - previous_second
     if elapsed_seconds > 0.25:

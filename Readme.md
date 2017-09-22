@@ -1,6 +1,12 @@
 
 # PyOpenGL 4.5 Cheatsheet
 
+## Import
+
+```python
+from OpenGL.GL import *
+```
+
 ## OpenGL context
 
 * [GLFW Window](doc/GLFW.md)
@@ -85,6 +91,8 @@ if not glGetProgramiv(program, GL_LINK_STATUS):
     print glGetProgramInfoLog(program)
 
 glDeleteShader(shader)
+
+glUseProgram(program)
 ```
 
 ## Texture
@@ -113,6 +121,16 @@ glMakeTextureHandleNonResidentNV(handle)
 
 ```
 
+## Renderbuffer
+
+```python
+rb = np.empty(1, dtype=np.uint32)
+glCreateRenderbuffers(len(rb), rb)
+glNamedRenderbufferStorage(rb, internalformat, W, H)
+
+# glNamedRenderbufferStorageMultisample(rb, samples, internalformat, W, H)
+```
+
 
 ## Render loop
 
@@ -124,5 +142,6 @@ glNamedBufferSubData(buf, offset, nbytes, data)
 
 # glDrawElementsIndirect(GL_TRIANGLES, GL_UNSIGNED_INT, ctypes.c_void_p(obj_id*20))
 # glDrawArraysIndirect(GL_TRIANGLES, ctypes.c_void_p(obj_id*16))
-
+# glDrawArrays(GL_TRIANGLES, 0, 4) # First, count
+# glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, None)
 ```
